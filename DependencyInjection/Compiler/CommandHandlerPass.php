@@ -24,6 +24,8 @@ class CommandHandlerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $tacticianConfig = $container->getExtensionConfig('tactician');
+        $tacticianConfig = $tacticianConfig[0];
+        
         $defaultBusId = $tacticianConfig['default_bus'];
         $busIds = array_keys($tacticianConfig['commandbus']);
         $busIdToHandlerMapping = [];
