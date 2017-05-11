@@ -63,7 +63,7 @@ class HandleCommandVoter extends Voter
      */
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
-        $allowedRoles = $this->getAllowedRoles(get_class($subject));
+        $allowedRoles = $this->getAllowedRoles($subject);
 
         if (count($allowedRoles) > 0) {
             return $this->decisionManager->decide($token, $allowedRoles);
@@ -81,10 +81,13 @@ class HandleCommandVoter extends Voter
      */
     private function getAllowedRoles($type)
     {
-        if (array_key_exists($type, $this->commandRoleMapping)) {
-            return $this->commandRoleMapping[$type];
-        } else {
-            return [];
+
+        foreach ($this->commandRoleMapping as $class => $roles) {
+            if ($type instanceof $class) {
+                return $roles;
+            }
         }
+
+        return [];
     }
 }
