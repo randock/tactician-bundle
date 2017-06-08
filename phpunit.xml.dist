@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php"
+<phpunit bootstrap="bootstrap.php"
          backupGlobals="false"
          backupStaticAttributes="false"
          colors="true"
@@ -11,7 +11,7 @@
          stopOnFailure="false">
     <testsuites>
         <testsuite name="TacticianBundle Test Suite">
-            <directory>Tests/</directory>
+            <directory>tests/</directory>
         </testsuite>
     </testsuites>
     <filter>
